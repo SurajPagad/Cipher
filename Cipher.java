@@ -16,7 +16,7 @@ public class Cipher
                 flag=true;
                 t=p;
                 break;
-            }else if((p*p)<len)//nearest perfect square number
+            }else if((p*p)<len)//if not a perfect square,calculate nearest perfect square number
             {    
                 t=p;
             }
@@ -27,7 +27,7 @@ public class Cipher
     {
         int e,s=1,p;
         e=len-(t*t);
-        for(p=1;p<=e;p++)//s is number of extra rows to appended at the bottom
+        for(p=1;p<=e;p++)//calculate number of extra rows to be appended at the bottom
         {
             if(((p%t)==0)&&(p<e))
             {
@@ -36,7 +36,7 @@ public class Cipher
         }   
         return s+t;
     }
-    public void stringtoarray(String str,int x,int y)
+    public void stringtoarray(String str,int x,int y)//enter the string into 2 dimensional array
     {
         int i,j,k=0;
         b=new char[x][y];
@@ -54,7 +54,7 @@ public class Cipher
             }
         }
     }
-    public void display(int x,int y)
+    public void display(int x,int y)//display the elements of array
     {
         for(int i=0;i<x;i++)
         {
@@ -65,7 +65,7 @@ public class Cipher
         }
         System.out.println();
     }
-    public void encrypt(String str,int len)
+    public void encrypt(String str,int len)//encrypts the entered string
     {
         int t,s;
         t=checkpsq(len);
@@ -81,7 +81,7 @@ public class Cipher
             display(t,s);
         }
     }
-    public void decrypt(String str,int len)
+    public void decrypt(String str,int len)//decrypts the entered encrypted string
     {
         int t,s;
         t=checkpsq(len);
