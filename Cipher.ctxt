@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Cipher()
+comment1.params=len
+comment1.target=int\ checkpsq(int)
+comment2.params=len\ t
+comment2.target=int\ calc(int,\ int)
+comment3.params=str\ x\ y
+comment3.target=void\ stringtoarray(java.lang.String,\ int,\ int)
+comment4.params=x\ y
+comment4.target=void\ display(int,\ int)
+comment5.params=str\ len
+comment5.target=void\ encrypt(java.lang.String,\ int)
+comment6.params=str\ len
+comment6.target=void\ decrypt(java.lang.String,\ int)
+numComments=7
