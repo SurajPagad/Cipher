@@ -1,46 +1,42 @@
+/* Cipher class to encrypt and decrypt the string entered */
 public class Cipher
 { 
     char[][] b; 
     boolean flag;
-    public Cipher()
+    /**
+     * checks whether the string length is perfect square number or not
+     * @params len is the length of the string 
+     * @returns sqrt is a integer number i.e square of the perfect square number or nearest perfect square number
+    */
+    public int checkpsq(int len)
     {
-        flag=false;
-    }
-    /* Checks whether string length is perfect square and returns the square number or
-    else returns the nearest square number */
-    public int checkperfectsqr(int len)
-    {
-        int t=0;
-        for(int p=0;p<=len/2;p++) 
+        int sqrt=(int)Math.sqrt(len);
+        if(sqrt*sqrt==len)
         {
-            if((p*p)==len)
-            {
-                flag=true;
-                t=p;
-                break;
-            }else if((p*p)<len)
-            {    
-                t=p;
-            }
+            flag=true;
+            return sqrt;
         }
-        return t;
+        else{
+            flag=false;
+            return sqrt;
+        }
     }
-    /* calculates the number of rows or columns to be appended if string length is
-    not a perfect square */
-    public int calc(int len,int t)
+    /**
+     * calculates the number of extra rows to be added to the array
+     * @param len is the length of string
+     * @param sqrt is the square of nearest square number
+     */
+    public int calc(int len,int sqrt)
     {
-        int e,s=1,p;
-        e=len-(t*t);
-        for(p=1;p<=e;p++)
-        {
-            if(((p%t)==0)&&(p<e))
-            {
-                s++;
-            }
-        }   
-        return s+t;
+        double extrchar=len-(sqrt*sqrt);
+        return (int)(Math.ceil(extrchar/sqrt)+sqrt);
     }
-    /* copies the string to a two dimensional array */
+    /**
+     * Transfers the characters of string to a 2D array
+     * @param str is the string reference
+     * @param x number of rows of array
+     * @param y number of columns of array
+     */
     public void stringtoarray(String str,int x,int y)
     {
         int i,j,k=0;
@@ -59,7 +55,11 @@ public class Cipher
             }
         }
     }
-    /* Displays the two dimensional array */ 
+    /**
+     * Displays the elements array
+     * @param x number of rows of array
+     * @param y number of columns of array
+     */ 
     public void display(int x,int y)
     {
         for(int i=0;i<x;i++)
@@ -71,39 +71,46 @@ public class Cipher
         }
         System.out.println();
     }
-    /* Encrypts the string and displays it */
+    /** Encrypts the string
+     * @param str is the string reference
+     * @params len is the length of the string
+     */ 
     public void encrypt(String str,int len)
     {
-        int t,s;
-        t=checkperfectsqr(len);
+        int sqrt=checkpsq(len);
         if(flag)
         {
-            stringtoarray(str,t,t);
-            display(t,t);
+            stringtoarray(str,sqrt,sqrt);
+            System.out.print("Encrypted string: ");
+            display(sqrt,sqrt);
         }
         else
         {
-            s=calc(len,t);
-            stringtoarray(str,s,t);
-            display(t,s);
+            int s=calc(len,sqrt);
+            stringtoarray(str,s,sqrt);
+            System.out.print("Encrypted string: ");
+            display(sqrt,s);
         }
     }
-    /* Encrypts the string and displays it */
+    /** Decrypts the string
+     * @param str is the string reference
+     * @params len is the length of the string
+     */ 
     public void decrypt(String str,int len)
     {
-        int t,s;
-        t=checkperfectsqr(len);
+        int sqrt=checkpsq(len);
         if(flag)
         {
-            stringtoarray(str,t,t);
-            display(t,t);
+            stringtoarray(str,sqrt,sqrt);
+            System.out.print("Decrypted string: ");
+            display(sqrt,sqrt);
         }
         else
         {
-            s=calc(len,t);
-            stringtoarray(str,t,s);
-            display(s,t);
+            int s=calc(len,sqrt);
+            stringtoarray(str,sqrt,s);
+            System.out.print("Decrypted string: ");
+            display(s,sqrt);
         }
     }
-}    
-        
+}
